@@ -65,9 +65,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1670
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1670: extern volatile TX1STAbits_t TX1STAbits __attribute__((address(0x11E)));
 [v _TX1STAbits `VS97 ~T0 @X0 0 e@286 ]
-"22715
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 22715: extern volatile __bit RC1IF __attribute__((address(0x387D)));
-[v _RC1IF `Vb ~T0 @X0 0 e@14461 ]
 "1225
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1225: extern volatile unsigned char RC1REG __attribute__((address(0x119)));
 [v _RC1REG `Vuc ~T0 @X0 0 e@281 ]
@@ -1070,83 +1067,76 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15
 [; ;UART_funcs.c: 15:     SPBRG = spbrgVal;
 [e = _SPBRG -> _spbrgVal `uc ]
-"17
-[; ;UART_funcs.c: 17:     PEIE = 1;
-[e = _PEIE -> -> 1 `i `b ]
 "18
-[; ;UART_funcs.c: 18:     INTCONbits.GIE =1;
+[; ;UART_funcs.c: 18:     PEIE = 1;
+[e = _PEIE -> -> 1 `i `b ]
+"19
+[; ;UART_funcs.c: 19:     INTCONbits.GIE =1;
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-"20
-[; ;UART_funcs.c: 20:     TX1STA = 0b10100110;
-[e = _TX1STA -> -> 166 `i `uc ]
-"21
-[; ;UART_funcs.c: 21:     RC1STA = 0b10010000;
-[e = _RC1STA -> -> 144 `i `uc ]
 "22
-[; ;UART_funcs.c: 22:     BAUD1CON = 0b00000000;
-[e = _BAUD1CON -> -> 0 `i `uc ]
+[; ;UART_funcs.c: 22:     TX1STA = 0b10100110;
+[e = _TX1STA -> -> 166 `i `uc ]
+"23
+[; ;UART_funcs.c: 23:     RC1STA = 0b10010000;
+[e = _RC1STA -> -> 144 `i `uc ]
 "24
-[; ;UART_funcs.c: 24:     RC1IE = 1;
+[; ;UART_funcs.c: 24:     BAUD1CON = 0b00000000;
+[e = _BAUD1CON -> -> 0 `i `uc ]
+"26
+[; ;UART_funcs.c: 26:     RC1IE = 1;
 [e = _RC1IE -> -> 1 `i `b ]
-"25
-[; ;UART_funcs.c: 25: }
+"27
+[; ;UART_funcs.c: 27: }
 [e :UE 911 ]
 }
-"29
-[; ;UART_funcs.c: 29: void putch(unsigned char byte)
+"31
+[; ;UART_funcs.c: 31: void putch(unsigned char byte)
 [v _putch `(v ~T0 @X0 1 ef1`uc ]
-"30
-[; ;UART_funcs.c: 30: {
+"32
+[; ;UART_funcs.c: 32: {
 {
 [e :U _putch ]
-"29
-[; ;UART_funcs.c: 29: void putch(unsigned char byte)
-[v _byte `uc ~T0 @X0 1 r1 ]
-"30
-[; ;UART_funcs.c: 30: {
-[f ]
 "31
-[; ;UART_funcs.c: 31:     TXSTA=0x26;
-[e = _TXSTA -> -> 38 `i `uc ]
+[; ;UART_funcs.c: 31: void putch(unsigned char byte)
+[v _byte `uc ~T0 @X0 1 r1 ]
 "32
-[; ;UART_funcs.c: 32:     RCSTAbits.SPEN=1;
-[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+[; ;UART_funcs.c: 32: {
+[f ]
 "33
-[; ;UART_funcs.c: 33:     TXREG=byte;
-[e = _TXREG _byte ]
+[; ;UART_funcs.c: 33:     TXSTA=0x26;
+[e = _TXSTA -> -> 38 `i `uc ]
 "34
-[; ;UART_funcs.c: 34:     while(TX1STAbits.TRMT == 0)continue;
+[; ;UART_funcs.c: 34:     RCSTAbits.SPEN=1;
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
+"35
+[; ;UART_funcs.c: 35:     TXREG=byte;
+[e = _TXREG _byte ]
+"36
+[; ;UART_funcs.c: 36:     while(TX1STAbits.TRMT == 0)continue;
 [e $U 913  ]
 [e :U 914 ]
 [e $U 913  ]
 [e :U 913 ]
 [e $ == -> . . _TX1STAbits 0 1 `i -> 0 `i 914  ]
 [e :U 915 ]
-"35
-[; ;UART_funcs.c: 35:     TX1STAbits.TRMT = 0;
+"37
+[; ;UART_funcs.c: 37:     TX1STAbits.TRMT = 0;
 [e = . . _TX1STAbits 0 1 -> -> 0 `i `uc ]
-"36
-[; ;UART_funcs.c: 36: }
+"38
+[; ;UART_funcs.c: 38: }
 [e :UE 912 ]
 }
-"39
-[; ;UART_funcs.c: 39: char readSerial(void){
+"41
+[; ;UART_funcs.c: 41: char readSerial(void){
 [v _readSerial `(uc ~T0 @X0 1 ef ]
 {
 [e :U _readSerial ]
 [f ]
-"40
-[; ;UART_funcs.c: 40:     while (!RC1IF);
-[e $U 917  ]
-[e :U 918 ]
-[e :U 917 ]
-[e $ ! _RC1IF 918  ]
-[e :U 919 ]
-"41
-[; ;UART_funcs.c: 41:     return RC1REG;
+"43
+[; ;UART_funcs.c: 43:     return RC1REG;
 [e ) -> _RC1REG `uc ]
 [e $UE 916  ]
-"42
-[; ;UART_funcs.c: 42: }
+"44
+[; ;UART_funcs.c: 44: }
 [e :UE 916 ]
 }

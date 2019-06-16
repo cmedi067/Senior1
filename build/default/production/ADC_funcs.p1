@@ -1108,7 +1108,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;ADC_funcs.c: 27:                    ANSELB |= 1 << pinNum;
 [e =| _ANSELB -> << -> 1 `i _pinNum `Vuc ]
 "28
-[; ;ADC_funcs.c: 28:                    chan = 12 + (pinNum) ;
+[; ;ADC_funcs.c: 28:                    chan = 12 + pinNum ;
 [e = _chan -> + -> 12 `i _pinNum `uc ]
 "30
 [; ;ADC_funcs.c: 30:         case 'C' : TRISC |= 1 << pinNum;
@@ -1140,8 +1140,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; ;ADC_funcs.c: 42:     ADCON0bits.ADON = 1;
 [e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
 "43
-[; ;ADC_funcs.c: 43:     _delay((unsigned long)((100)*(32000000/4000000.0)));
-[e ( __delay (1 -> * -> -> 100 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
+[; ;ADC_funcs.c: 43:     _delay((unsigned long)((50)*(32000000/4000000.0)));
+[e ( __delay (1 -> * -> -> 50 `i `d / -> -> 32000000 `l `d .4000000.0 `ul ]
 "44
 [; ;ADC_funcs.c: 44:     ADCON0bits.GOnDONE = 1;
 [e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]

@@ -11616,8 +11616,10 @@ void init_UART(long baud_rate){
     unsigned int spbrgVal = (clock - baud_rate * 16) / (baud_rate * 16);
     SPBRG = spbrgVal;
 
+
     PEIE = 1;
     INTCONbits.GIE =1;
+
 
     TX1STA = 0b10100110;
     RC1STA = 0b10010000;
@@ -11639,6 +11641,6 @@ void putch(unsigned char byte)
 
 
 char readSerial(void){
-    while (!RC1IF);
+
     return RC1REG;
 }

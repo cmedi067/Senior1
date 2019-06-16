@@ -25,7 +25,7 @@ char ADC_init(char* pin){
                    
         case 'B' : TRISB |= 1 << pinNum;
                    ANSELB |= 1 << pinNum;
-                   chan = 12 + (pinNum) ;
+                   chan = 12 + pinNum ;
                    
         case 'C' : TRISC |= 1 << pinNum; 
                    ANSELC |= 1 << pinNum; 
@@ -40,7 +40,7 @@ char ADC_init(char* pin){
     
     //Turn ADC on 
     ADCON0bits.ADON = 1;   
-    __delay_us(100);
+    __delay_us(50);
     ADCON0bits.GOnDONE = 1;    
 }
 

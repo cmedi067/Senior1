@@ -1164,6 +1164,13 @@ static int vfpfcnvrt(FILE *fp, char *fmt[], va_list ap)
 
             return efgtoa(fp, f, c);
         }
+# 1077 "/opt/microchip/xc8/v2.05/pic/sources/c99/common/doprnt.c"
+        if (*fmt[0] == 'n') {
+            ++*fmt;
+            vp = (void *)(*(int * *)__va_arg(*(int * **)ap, (int *)0));
+            *(int *)vp = nout;
+            return 0;
+        }
 # 1350 "/opt/microchip/xc8/v2.05/pic/sources/c99/common/doprnt.c"
         if ((*fmt)[0] == '%') {
             ++*fmt;

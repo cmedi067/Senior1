@@ -51,26 +51,19 @@
 
 
 
-__interrupt() void ISR(void) {
-    /*char b;
-    char *received_char = &b;
-    int length_to_read = 6;
-    *received_char = readSerial();*/
-    
+__interrupt() void ISR(void) {    
     if(PIR1bits.ADIF == 1){
        unsigned int adc_out = ADC_read();
         float decimalADC = 0.004887586 * adc_out;
-
-    
+        
         printf("%f \n\r ", decimalADC);
         PIR1bits.ADIF = 0;
     }
     
-    
+    if(PIR3bits.RC1IF == 1){
+        printf(readSerial());
+    }
 }
-
-
-
 
 void main(void) {
     //Set PortC as output

@@ -11650,26 +11650,19 @@ unsigned int ADC_read();
 
 
 
-__attribute__((picinterrupt(("")))) void UART_Recieve(void) {
-
-
-
-
-
+__attribute__((picinterrupt(("")))) void ISR(void) {
     if(PIR1bits.ADIF == 1){
        unsigned int adc_out = ADC_read();
         float decimalADC = 0.004887586 * adc_out;
 
-
         printf("%f \n\r ", decimalADC);
         PIR1bits.ADIF = 0;
+    }
 
-
+    if(PIR3bits.RC1IF == 1){
+        printf(readSerial());
     }
 }
-
-
-
 
 void main(void) {
 
@@ -11680,14 +11673,6 @@ void main(void) {
 
     ADC_init("C1");
 
-    while(1){
-
-
-
-
-
-
-
-    }
+    while(1){ }
     return;
 }

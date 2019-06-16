@@ -14,9 +14,11 @@ void init_UART(long baud_rate){
     unsigned int spbrgVal = (clock - baud_rate * 16) / (baud_rate * 16);      
     SPBRG = spbrgVal;
     
+    //Enable Global Interrupts and peripheral interrupts
     PEIE = 1;
     INTCONbits.GIE =1;
     
+    //TX config
     TX1STA = 0b10100110;
     RC1STA = 0b10010000;
     BAUD1CON = 0b00000000;
@@ -37,7 +39,7 @@ void putch(unsigned char byte)
 
 
 char readSerial(void){
-    while (!RC1IF);
+   
     return RC1REG;    
 }
 
