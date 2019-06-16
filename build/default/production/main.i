@@ -11640,7 +11640,6 @@ char *tempnam(const char *, const char *);
 
 
 void init_UART(long);
-
 char readSerial(void);
 # 50 "main.c" 2
 # 1 "./ADC_funcs.h" 1
@@ -11652,11 +11651,21 @@ unsigned int ADC_read();
 
 
 __attribute__((picinterrupt(("")))) void UART_Recieve(void) {
-    char b;
-    char *received_char = &b;
-    int length_to_read = 6;
-    *received_char = readSerial();
 
+
+
+
+
+    if(PIR1bits.ADIF == 1){
+       unsigned int adc_out = ADC_read();
+        float decimalADC = 0.004887586 * adc_out;
+
+
+        printf("%f \n\r ", decimalADC);
+        PIR1bits.ADIF = 0;
+
+
+    }
 }
 
 
@@ -11673,12 +11682,12 @@ void main(void) {
 
     while(1){
 
-    unsigned int adc_out = ADC_read();
-    float decimalADC = 0.004887586 * adc_out;
 
 
-    printf("%f \n\r ", decimalADC);
-    _delay((unsigned long)((500)*(32000000/4000.0)));
+
+
+
+
     }
     return;
 }

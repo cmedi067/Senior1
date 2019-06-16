@@ -25,7 +25,7 @@ void init_UART(long baud_rate){
 }
 
 
-//Function used to redirect printf to UART1
+//Function used to redirect printf to UART 1
 void putch(unsigned char byte)
 {
     TXSTA=0x26;

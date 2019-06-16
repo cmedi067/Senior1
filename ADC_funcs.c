@@ -6,6 +6,17 @@ char ADC_init(char* pin){
     char block = pin[0];
     int pinNum = pin[1] - '0';
     char chan ;     
+    
+    //Clear A/D interrupt flag
+    PIR1bits.ADIF = 0;
+    
+    //Enable A/D interrupt
+    PIE1bits.ADIE = 1;
+    
+    //Enable Global Interrupts and peripheral interrupts
+    PEIE = 1;    
+    INTCONbits.GIE =1;        
+            
  
      switch(block){
         case 'A' : TRISA |= 1 << pinNum;
@@ -28,11 +39,13 @@ char ADC_init(char* pin){
     ADCON1 = 0b10100000;
     
     //Turn ADC on 
-    ADCON0bits.ADON = 1;       
+    ADCON0bits.ADON = 1;   
+    __delay_us(100);
+    ADCON0bits.GOnDONE = 1;    
 }
 
 unsigned int ADC_read(){  
-  ADCON0bits.GOnDONE = 1;
+ // ADCON0bits.GOnDONE = 1;
   while(ADCON0bits.GOnDONE == 1);   
   return ( (ADRESH<<8) + ADRESL);    
 }

@@ -11613,7 +11613,6 @@ unsigned int ADC_read();
 
 
 void init_UART(long);
-
 char readSerial(void);
 # 4 "ADC_funcs.c" 2
 
@@ -11621,6 +11620,16 @@ char ADC_init(char* pin){
     char block = pin[0];
     int pinNum = pin[1] - '0';
     char chan ;
+
+
+    PIR1bits.ADIF = 0;
+
+
+    PIE1bits.ADIE = 1;
+
+
+    PEIE = 1;
+    INTCONbits.GIE =1;
 
 
      switch(block){
@@ -11634,8 +11643,7 @@ char ADC_init(char* pin){
 
         case 'C' : TRISC |= 1 << pinNum;
                    ANSELC |= 1 << pinNum;
-                   chan = 16 + (pinNum) ;
-
+                   chan = 16 + pinNum ;
     }
 
 
@@ -11646,14 +11654,12 @@ char ADC_init(char* pin){
 
 
     ADCON0bits.ADON = 1;
-
-
-
+    _delay((unsigned long)((100)*(32000000/4000000.0)));
+    ADCON0bits.GOnDONE = 1;
 }
 
 unsigned int ADC_read(){
-  _delay((unsigned long)((2)*(32000000/4000.0)));
-  ADCON0bits.GOnDONE = 1;
+
   while(ADCON0bits.GOnDONE == 1);
   return ( (ADRESH<<8) + ADRESL);
 }

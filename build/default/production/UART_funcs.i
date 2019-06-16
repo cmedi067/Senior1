@@ -11600,7 +11600,6 @@ char *tempnam(const char *, const char *);
 
 
 void init_UART(long);
-
 char readSerial(void);
 # 3 "UART_funcs.c" 2
 
@@ -11608,14 +11607,16 @@ char readSerial(void);
 void init_UART(long baud_rate){
     long clock = 32000000;
     ANSELC = 0x00;
+
+
     RX1DTPPS = 0x14;
     RC5PPS = 0x0F;
 
-    unsigned int spbrgVal = (clock - baud_rate * 16) / (baud_rate * 16);
 
+    unsigned int spbrgVal = (clock - baud_rate * 16) / (baud_rate * 16);
     SPBRG = spbrgVal;
 
-    PEIE =1;
+    PEIE = 1;
     INTCONbits.GIE =1;
 
     TX1STA = 0b10100110;
@@ -11635,7 +11636,8 @@ void putch(unsigned char byte)
     while(TX1STAbits.TRMT == 0)continue;
     TX1STAbits.TRMT = 0;
 }
-# 47 "UART_funcs.c"
+
+
 char readSerial(void){
     while (!RC1IF);
     return RC1REG;

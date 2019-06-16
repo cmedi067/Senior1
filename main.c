@@ -51,12 +51,22 @@
 
 
 
-__interrupt() void UART_Recieve(void) {
-    char b;
+__interrupt() void ISR(void) {
+    /*char b;
     char *received_char = &b;
     int length_to_read = 6;
-    *received_char = readSerial();
-   // printSerial(received_char, 1);
+    *received_char = readSerial();*/
+    
+    if(PIR1bits.ADIF == 1){
+       unsigned int adc_out = ADC_read();
+        float decimalADC = 0.004887586 * adc_out;
+
+    
+        printf("%f \n\r ", decimalADC);
+        PIR1bits.ADIF = 0;
+    }
+    
+    
 }
 
 
@@ -71,15 +81,7 @@ void main(void) {
     
     ADC_init("C1");
     
-    while(1){
-    
-    unsigned int adc_out = ADC_read();
-    float decimalADC = 0.004887586 * adc_out;
-
-    
-    printf("%f \n\r ", decimalADC);
-    __delay_ms(500);
-    }
+    while(1){  }
     return;
 }
 
