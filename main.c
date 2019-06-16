@@ -46,17 +46,21 @@
 #include<pic16f15345.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include "basicFuncs.h"
+#include "UART_funcs.h"
+#include "ADC_funcs.h"
 
-#define _XTAL_FREQ 32000000
+
 
 __interrupt() void UART_Recieve(void) {
     char b;
     char *received_char = &b;
     int length_to_read = 6;
     *received_char = readSerial();
-    printSerial(received_char, 1);
+   // printSerial(received_char, 1);
 }
+
+
+
 
 void main(void) {
     //Set PortC as output
@@ -64,10 +68,18 @@ void main(void) {
     TRISA = 0x00;
 
     init_UART(115200);
+    
+    ADC_init("C1");
+    
+    while(1){
+    
+    unsigned int adc_out = ADC_read();
+    float decimalADC = 0.004887586 * adc_out;
 
-
-    printSerial("Hello", 5);
-
+    
+    printf("%f \n\r ", decimalADC);
+    __delay_ms(500);
+    }
     return;
 }
 

@@ -1,4 +1,4 @@
-# 1 "basicFuncs.c"
+# 1 "UART_funcs.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,9 +6,9 @@
 # 1 "<built-in>" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "basicFuncs.c" 2
+# 1 "UART_funcs.c" 2
 
-# 1 "./basicFuncs.h" 1
+# 1 "./UART_funcs.h" 1
 
 
 
@@ -11458,16 +11458,152 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 2 3
-# 5 "./basicFuncs.h" 2
+# 5 "./UART_funcs.h" 2
+
+# 1 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 1 3
+# 24 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 3
+# 1 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 1 3
+# 10 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 3
+typedef void * va_list[1];
 
 
-char ADC_goDONE = (0 << 1);
+
+
+typedef void * __isoc_va_list[1];
+# 145 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 3
+typedef long ssize_t;
+# 254 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 3
+typedef long long off_t;
+# 407 "/opt/microchip/xc8/v2.05/pic/include/c99/bits/alltypes.h" 3
+typedef struct _IO_FILE FILE;
+# 25 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 2 3
+# 52 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 3
+typedef union _G_fpos64_t {
+ char __opaque[16];
+ double __align;
+} fpos_t;
+
+extern FILE *const stdin;
+extern FILE *const stdout;
+extern FILE *const stderr;
+
+
+
+
+
+FILE *fopen(const char *restrict, const char *restrict);
+FILE *freopen(const char *restrict, const char *restrict, FILE *restrict);
+int fclose(FILE *);
+
+int remove(const char *);
+int rename(const char *, const char *);
+
+int feof(FILE *);
+int ferror(FILE *);
+int fflush(FILE *);
+void clearerr(FILE *);
+
+int fseek(FILE *, long, int);
+long ftell(FILE *);
+void rewind(FILE *);
+
+int fgetpos(FILE *restrict, fpos_t *restrict);
+int fsetpos(FILE *, const fpos_t *);
+
+size_t fread(void *restrict, size_t, size_t, FILE *restrict);
+size_t fwrite(const void *restrict, size_t, size_t, FILE *restrict);
+
+int fgetc(FILE *);
+int getc(FILE *);
+int getchar(void);
+int ungetc(int, FILE *);
+
+int fputc(int, FILE *);
+int putc(int, FILE *);
+int putchar(int);
+
+char *fgets(char *restrict, int, FILE *restrict);
+
+char *gets(char *);
+
+
+int fputs(const char *restrict, FILE *restrict);
+int puts(const char *);
+
+
+#pragma printf_check(printf) const
+#pragma printf_check(vprintf) const
+#pragma printf_check(sprintf) const
+#pragma printf_check(snprintf) const
+#pragma printf_check(vsprintf) const
+#pragma printf_check(vsnprintf) const
+
+
+int printf(const char *restrict, ...);
+int fprintf(FILE *restrict, const char *restrict, ...);
+int sprintf(char *restrict, const char *restrict, ...);
+int snprintf(char *restrict, size_t, const char *restrict, ...);
+
+int vprintf(const char *restrict, __isoc_va_list);
+int vfprintf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsprintf(char *restrict, const char *restrict, __isoc_va_list);
+int vsnprintf(char *restrict, size_t, const char *restrict, __isoc_va_list);
+
+int scanf(const char *restrict, ...);
+int fscanf(FILE *restrict, const char *restrict, ...);
+int sscanf(const char *restrict, const char *restrict, ...);
+int vscanf(const char *restrict, __isoc_va_list);
+int vfscanf(FILE *restrict, const char *restrict, __isoc_va_list);
+int vsscanf(const char *restrict, const char *restrict, __isoc_va_list);
+
+void perror(const char *);
+
+int setvbuf(FILE *restrict, char *restrict, int, size_t);
+void setbuf(FILE *restrict, char *restrict);
+
+char *tmpnam(char *);
+FILE *tmpfile(void);
+
+
+
+
+FILE *fmemopen(void *restrict, size_t, const char *restrict);
+FILE *open_memstream(char **, size_t *);
+FILE *fdopen(int, const char *);
+FILE *popen(const char *, const char *);
+int pclose(FILE *);
+int fileno(FILE *);
+int fseeko(FILE *, off_t, int);
+off_t ftello(FILE *);
+int dprintf(int, const char *restrict, ...);
+int vdprintf(int, const char *restrict, __isoc_va_list);
+void flockfile(FILE *);
+int ftrylockfile(FILE *);
+void funlockfile(FILE *);
+int getc_unlocked(FILE *);
+int getchar_unlocked(void);
+int putc_unlocked(int, FILE *);
+int putchar_unlocked(int);
+ssize_t getdelim(char **restrict, size_t *restrict, int, FILE *restrict);
+ssize_t getline(char **restrict, size_t *restrict, FILE *restrict);
+int renameat(int, const char *, int, const char *);
+char *ctermid(char *);
+
+
+
+
+
+
+
+char *tempnam(const char *, const char *);
+# 7 "./UART_funcs.h" 2
+
 
 void init_UART(long);
-void printSerial(char *, int);
+
 char readSerial(void);
-char ADC_init(void);
-# 3 "basicFuncs.c" 2
+# 3 "UART_funcs.c" 2
+
 
 void init_UART(long baud_rate){
     long clock = 32000000;
@@ -11488,44 +11624,19 @@ void init_UART(long baud_rate){
 
     RC1IE = 1;
 }
-void printSerial(char * text_to_send, int string_size){
-    int charCounter = 0;
-    int j = 0;
 
-    for(int i = 0; i < string_size; i++){
-        while(TX1STAbits.TRMT == 0);
-        TX1REG = text_to_send[i];
-    }
+
+
+void putch(unsigned char byte)
+{
+    TXSTA=0x26;
+    RCSTAbits.SPEN=1;
+    TXREG=byte;
+    while(TX1STAbits.TRMT == 0)continue;
+    TX1STAbits.TRMT = 0;
 }
-
+# 47 "UART_funcs.c"
 char readSerial(void){
     while (!RC1IF);
     return RC1REG;
-}
-
-char ADC_init(void){
-
-    TRISC = 0b00000011;
-
-
-    ANSELC = 0b00000011;
-
-
-    ADCON1 = 0b10100011;
-
-
-    ADCON0 = 0b10000001;
-
-}
-
-int ADC_read(){
-    ADCON0 |= ADC_goDONE;
-
-    unsigned char* currChar = __getBits(ADCON0);
-    while(currChar[1] == 1){}
-
-    return ( (ADRESH<<8) + ADRESL) ;
-
-
-
 }

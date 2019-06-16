@@ -1,4 +1,4 @@
-# 1 "main.c"
+# 1 "ADC_funcs.c"
 # 1 "<built-in>" 1
 # 1 "<built-in>" 3
 # 288 "<built-in>" 3
@@ -6,44 +6,10 @@
 # 1 "<built-in>" 2
 # 1 "/opt/microchip/xc8/v2.05/pic/include/language_support.h" 1 3
 # 2 "<built-in>" 2
-# 1 "main.c" 2
-# 10 "main.c"
-#pragma config FEXTOSC = OFF
-#pragma config RSTOSC = HFINT32
-#pragma config CLKOUTEN = OFF
-#pragma config CSWEN = ON
-#pragma config FCMEN = ON
+# 1 "ADC_funcs.c" 2
 
-
-#pragma config MCLRE = ON
-#pragma config PWRTE = OFF
-#pragma config LPBOREN = OFF
-#pragma config BOREN = ON
-#pragma config BORV = LO
-#pragma config ZCD = OFF
-#pragma config PPS1WAY = ON
-#pragma config STVREN = ON
-
-
-#pragma config WDTCPS = WDTCPS_31
-#pragma config WDTE = NSLEEP
-#pragma config WDTCWS = WDTCWS_7
-#pragma config WDTCCS = SC
-
-
-#pragma config BBSIZE = BB512
-#pragma config BBEN = OFF
-#pragma config SAFEN = OFF
-#pragma config WRTAPP = OFF
-#pragma config WRTB = OFF
-#pragma config WRTC = OFF
-#pragma config WRTSAF = OFF
-#pragma config LVP = ON
-
-
-#pragma config CP = OFF
-
-
+# 1 "./ADC_funcs.h" 1
+# 11 "./ADC_funcs.h"
 # 1 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 1 3
 # 18 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 3
 extern const char __xc8_OPTIM_SPEED;
@@ -11490,7 +11456,7 @@ extern __bank0 unsigned char __resetbits;
 extern __bank0 __bit __powerdown;
 extern __bank0 __bit __timeout;
 # 28 "/opt/microchip/xc8/v2.05/pic/include/xc.h" 2 3
-# 46 "main.c" 2
+# 12 "./ADC_funcs.h" 2
 
 # 1 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 1 3
 # 24 "/opt/microchip/xc8/v2.05/pic/include/c99/stdio.h" 3
@@ -11628,8 +11594,15 @@ char *ctermid(char *);
 
 
 char *tempnam(const char *, const char *);
-# 48 "main.c" 2
+# 14 "./ADC_funcs.h" 2
 
+
+
+
+
+char ADC_init(char*);
+unsigned int ADC_read();
+# 3 "ADC_funcs.c" 2
 # 1 "./UART_funcs.h" 1
 
 
@@ -11642,43 +11615,45 @@ char *tempnam(const char *, const char *);
 void init_UART(long);
 
 char readSerial(void);
-# 50 "main.c" 2
-# 1 "./ADC_funcs.h" 1
-# 19 "./ADC_funcs.h"
-char ADC_init(char*);
-unsigned int ADC_read();
-# 51 "main.c" 2
+# 4 "ADC_funcs.c" 2
+
+char ADC_init(char* pin){
+    char block = pin[0];
+    int pinNum = pin[1] - '0';
+    char chan ;
 
 
+     switch(block){
+        case 'A' : TRISA |= 1 << pinNum;
+                   ANSELA |= 1 << pinNum;
+                   chan = pinNum ;
 
-__attribute__((picinterrupt(("")))) void UART_Recieve(void) {
-    char b;
-    char *received_char = &b;
-    int length_to_read = 6;
-    *received_char = readSerial();
+        case 'B' : TRISB |= 1 << pinNum;
+                   ANSELB |= 1 << pinNum;
+                   chan = 12 + (pinNum) ;
+
+        case 'C' : TRISC |= 1 << pinNum;
+                   ANSELC |= 1 << pinNum;
+                   chan = 16 + (pinNum) ;
+
+    }
+
+
+    ADCON0 |= chan << 2;
+
+
+    ADCON1 = 0b10100000;
+
+
+    ADCON0bits.ADON = 1;
+
+
 
 }
 
-
-
-
-void main(void) {
-
-    TRISC = 0b00010000;
-    TRISA = 0x00;
-
-    init_UART(115200);
-
-    ADC_init("C1");
-
-    while(1){
-
-    unsigned int adc_out = ADC_read();
-    float decimalADC = 0.004887586 * adc_out;
-
-
-    printf("%f \n\r ", decimalADC);
-    _delay((unsigned long)((500)*(32000000/4000.0)));
-    }
-    return;
+unsigned int ADC_read(){
+  _delay((unsigned long)((2)*(32000000/4000.0)));
+  ADCON0bits.GOnDONE = 1;
+  while(ADCON0bits.GOnDONE == 1);
+  return ( (ADRESH<<8) + ADRESL);
 }

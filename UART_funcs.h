@@ -3,12 +3,10 @@
 
 #include <xc.h>
 #include<pic16f15345.h>
-
-char ADC_goDONE =  (0 << 1);
+#include <stdio.h>
+#include <stdlib.h>
 
 void init_UART(long);
-void printSerial(char *, int);
 char readSerial(void);
-char ADC_init(void);
 
 #endif

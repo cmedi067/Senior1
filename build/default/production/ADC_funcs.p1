@@ -1,83 +1,53 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[t ~ __interrupt . k ]
-[t T1 __interrupt ]
-"11 ./UART_funcs.h
-[; ;./UART_funcs.h: 11: char readSerial(void);
-[v _readSerial `(uc ~T0 @X0 0 ef ]
-[p mainexit ]
-"681 /opt/microchip/xc8/v2.05/pic/include/pic16f15345.h
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 681: extern volatile unsigned char TRISC __attribute__((address(0x014)));
-[v _TRISC `Vuc ~T0 @X0 0 e@20 ]
-"597
+"597 /opt/microchip/xc8/v2.05/pic/include/pic16f15345.h
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 597: extern volatile unsigned char TRISA __attribute__((address(0x012)));
 [v _TRISA `Vuc ~T0 @X0 0 e@18 ]
-"9 ./UART_funcs.h
-[; ;./UART_funcs.h: 9: void init_UART(long);
-[v _init_UART `(v ~T0 @X0 0 ef1`l ]
-"19 ./ADC_funcs.h
-[; ;./ADC_funcs.h: 19: char ADC_init(char*);
-[v _ADC_init `(uc ~T0 @X0 0 ef1`*uc ]
-"20
-[; ;./ADC_funcs.h: 20: unsigned int ADC_read();
-[v _ADC_read `(ui ~T0 @X0 0 e? ]
-"113 /opt/microchip/xc8/v2.05/pic/include/c99/stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"17952
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 17952: extern volatile unsigned char ANSELA __attribute__((address(0x1F38)));
+[v _ANSELA `Vuc ~T0 @X0 0 e@7992 ]
+"642
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 642: extern volatile unsigned char TRISB __attribute__((address(0x013)));
+[v _TRISB `Vuc ~T0 @X0 0 e@19 ]
+"18337
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 18337: extern volatile unsigned char ANSELB __attribute__((address(0x1F43)));
+[v _ANSELB `Vuc ~T0 @X0 0 e@8003 ]
+"681
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 681: extern volatile unsigned char TRISC __attribute__((address(0x014)));
+[v _TRISC `Vuc ~T0 @X0 0 e@20 ]
+"18649
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 18649: extern volatile unsigned char ANSELC __attribute__((address(0x1F4E)));
+[v _ANSELC `Vuc ~T0 @X0 0 e@8014 ]
+"1036
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1036: extern volatile unsigned char ADCON0 __attribute__((address(0x09D)));
+[v _ADCON0 `Vuc ~T0 @X0 0 e@157 ]
+"1107
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1107: extern volatile unsigned char ADCON1 __attribute__((address(0x09E)));
+[v _ADCON1 `Vuc ~T0 @X0 0 e@158 ]
+"1042
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1042:     struct {
+[s S57 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S57 . ADON GOnDONE CHS0 CHS1 CHS2 CHS3 CHS4 CHS5 ]
+"1052
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1052:     struct {
+[s S58 :2 `uc 1 :6 `uc 1 ]
+[n S58 . . CHS ]
+"1041
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1041: typedef union {
+[u S56 `S57 1 `S58 1 ]
+[n S56 . . . ]
+"1057
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1057: extern volatile ADCON0bits_t ADCON0bits __attribute__((address(0x09D)));
+[v _ADCON0bits `VS56 ~T0 @X0 0 e@157 ]
 [v F6693 `(v ~T0 @X0 1 tf1`ul ]
 "92 /opt/microchip/xc8/v2.05/pic/include/pic.h
 [v __delay `JF6693 ~T0 @X0 0 e ]
 [p i __delay ]
-"10 main.c
-[p x FEXTOSC = OFF ]
-"11
-[p x RSTOSC = HFINT32 ]
-"12
-[p x CLKOUTEN = OFF ]
-"13
-[p x CSWEN = ON ]
-"14
-[p x FCMEN = ON ]
-"17
-[p x MCLRE = ON ]
-"18
-[p x PWRTE = OFF ]
-"19
-[p x LPBOREN = OFF ]
-"20
-[p x BOREN = ON ]
-"21
-[p x BORV = LO ]
-"22
-[p x ZCD = OFF ]
-"23
-[p x PPS1WAY = ON ]
-"24
-[p x STVREN = ON ]
-"27
-[p x WDTCPS = WDTCPS_31 ]
-"28
-[p x WDTE = NSLEEP ]
-"29
-[p x WDTCWS = WDTCWS_7 ]
-"30
-[p x WDTCCS = SC ]
-"33
-[p x BBSIZE = BB512 ]
-"34
-[p x BBEN = OFF ]
-"35
-[p x SAFEN = OFF ]
-"36
-[p x WRTAPP = OFF ]
-"37
-[p x WRTB = OFF ]
-"38
-[p x WRTC = OFF ]
-"39
-[p x WRTSAF = OFF ]
-"40
-[p x LVP = ON ]
-"43
-[p x CP = OFF ]
+"966 /opt/microchip/xc8/v2.05/pic/include/pic16f15345.h
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 966: extern volatile unsigned char ADRESH __attribute__((address(0x09C)));
+[v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
+"896
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 896: extern volatile unsigned char ADRESL __attribute__((address(0x09B)));
+[v _ADRESL `Vuc ~T0 @X0 0 e@155 ]
 "110 /opt/microchip/xc8/v2.05/pic/include/pic16f15345.h
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 110: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1050,81 +1020,105 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19455
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 19455: __asm("TOSH equ 01FEFh");
 [; <" TOSH equ 01FEFh ;# ">
-[v $root$_UART_Recieve `(v ~T0 @X0 0 e ]
-"54 main.c
-[; ;main.c: 54: __attribute__((picinterrupt(("")))) void UART_Recieve(void) {
-[v _UART_Recieve `(v ~T1 @X0 1 ef ]
+"5 ADC_funcs.c
+[; ;ADC_funcs.c: 5: char ADC_init(char* pin){
+[v _ADC_init `(uc ~T0 @X0 1 ef1`*uc ]
 {
-[e :U _UART_Recieve ]
+[e :U _ADC_init ]
+[v _pin `*uc ~T0 @X0 1 r1 ]
 [f ]
-"55
-[; ;main.c: 55:     char b;
-[v _b `uc ~T0 @X0 1 a ]
-"56
-[; ;main.c: 56:     char *received_char = &b;
-[v _received_char `*uc ~T0 @X0 1 a ]
-[e = _received_char &U _b ]
-"57
-[; ;main.c: 57:     int length_to_read = 6;
-[v _length_to_read `i ~T0 @X0 1 a ]
-[e = _length_to_read -> 6 `i ]
-"58
-[; ;main.c: 58:     *received_char = readSerial();
-[e = *U _received_char ( _readSerial ..  ]
-"60
-[; ;main.c: 60: }
+"6
+[; ;ADC_funcs.c: 6:     char block = pin[0];
+[v _block `uc ~T0 @X0 1 a ]
+[e = _block *U + _pin * -> -> 0 `i `x -> -> # *U _pin `i `x ]
+"7
+[; ;ADC_funcs.c: 7:     int pinNum = pin[1] - '0';
+[v _pinNum `i ~T0 @X0 1 a ]
+[e = _pinNum -> - -> *U + _pin * -> -> 1 `i `x -> -> # *U _pin `i `x `ui -> 48 `ui `i ]
+"8
+[; ;ADC_funcs.c: 8:     char chan ;
+[v _chan `uc ~T0 @X0 1 a ]
+"11
+[; ;ADC_funcs.c: 11:      switch(block){
+[e $U 913  ]
+{
+"12
+[; ;ADC_funcs.c: 12:         case 'A' : TRISA |= 1 << pinNum;
+[e :U 914 ]
+[e =| _TRISA -> << -> 1 `i _pinNum `Vuc ]
+"13
+[; ;ADC_funcs.c: 13:                    ANSELA |= 1 << pinNum;
+[e =| _ANSELA -> << -> 1 `i _pinNum `Vuc ]
+"14
+[; ;ADC_funcs.c: 14:                    chan = pinNum ;
+[e = _chan -> _pinNum `uc ]
+"16
+[; ;ADC_funcs.c: 16:         case 'B' : TRISB |= 1 << pinNum;
+[e :U 915 ]
+[e =| _TRISB -> << -> 1 `i _pinNum `Vuc ]
+"17
+[; ;ADC_funcs.c: 17:                    ANSELB |= 1 << pinNum;
+[e =| _ANSELB -> << -> 1 `i _pinNum `Vuc ]
+"18
+[; ;ADC_funcs.c: 18:                    chan = 12 + (pinNum) ;
+[e = _chan -> + -> 12 `i _pinNum `uc ]
+"20
+[; ;ADC_funcs.c: 20:         case 'C' : TRISC |= 1 << pinNum;
+[e :U 916 ]
+[e =| _TRISC -> << -> 1 `i _pinNum `Vuc ]
+"21
+[; ;ADC_funcs.c: 21:                    ANSELC |= 1 << pinNum;
+[e =| _ANSELC -> << -> 1 `i _pinNum `Vuc ]
+"22
+[; ;ADC_funcs.c: 22:                    chan = 16 + (pinNum) ;
+[e = _chan -> + -> 16 `i _pinNum `uc ]
+"24
+[; ;ADC_funcs.c: 24:     }
+}
+[e $U 912  ]
+[e :U 913 ]
+[e [\ -> _block `i , $ -> -> 65 `ui `i 914
+ , $ -> -> 66 `ui `i 915
+ , $ -> -> 67 `ui `i 916
+ 912 ]
+[e :U 912 ]
+"27
+[; ;ADC_funcs.c: 27:     ADCON0 |= chan << 2;
+[e =| _ADCON0 -> << -> _chan `i -> 2 `i `Vuc ]
+"30
+[; ;ADC_funcs.c: 30:     ADCON1 = 0b10100000;
+[e = _ADCON1 -> -> 160 `i `uc ]
+"33
+[; ;ADC_funcs.c: 33:     ADCON0bits.ADON = 1;
+[e = . . _ADCON0bits 0 0 -> -> 1 `i `uc ]
+"37
+[; ;ADC_funcs.c: 37: }
 [e :UE 911 ]
 }
-[v $root$_main `(v ~T0 @X0 0 e ]
-"65
-[; ;main.c: 65: void main(void) {
-[v _main `(v ~T0 @X0 1 ef ]
+"39
+[; ;ADC_funcs.c: 39: unsigned int ADC_read(){
+[v _ADC_read `(ui ~T0 @X0 1 ef ]
 {
-[e :U _main ]
+[e :U _ADC_read ]
 [f ]
-"67
-[; ;main.c: 67:     TRISC = 0b00010000;
-[e = _TRISC -> -> 16 `i `uc ]
-"68
-[; ;main.c: 68:     TRISA = 0x00;
-[e = _TRISA -> -> 0 `i `uc ]
-"70
-[; ;main.c: 70:     init_UART(115200);
-[e ( _init_UART (1 -> 115200 `l ]
-"72
-[; ;main.c: 72:     ADC_init("C1");
-[e ( _ADC_init (1 :s 1C ]
-"74
-[; ;main.c: 74:     while(1){
-[e :U 914 ]
-{
-"76
-[; ;main.c: 76:     unsigned int adc_out = ADC_read();
-[v _adc_out `ui ~T0 @X0 1 a ]
-[e = _adc_out ( _ADC_read ..  ]
-"77
-[; ;main.c: 77:     float decimalADC = 0.004887586 * adc_out;
-[v _decimalADC `f ~T0 @X0 1 a ]
-[e = _decimalADC -> * .0.004887586 -> _adc_out `d `f ]
-"80
-[; ;main.c: 80:     printf("%f \n\r ", decimalADC);
-[e ( _printf , (. :s 2C -> _decimalADC `d ]
-"81
-[; ;main.c: 81:     _delay((unsigned long)((500)*(32000000/4000.0)));
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
-"82
-[; ;main.c: 82:     }
+"40
+[; ;ADC_funcs.c: 40:   _delay((unsigned long)((2)*(32000000/4000.0)));
+[e ( __delay (1 -> * -> -> 2 `i `d / -> -> 32000000 `l `d .4000.0 `ul ]
+"41
+[; ;ADC_funcs.c: 41:   ADCON0bits.GOnDONE = 1;
+[e = . . _ADCON0bits 0 1 -> -> 1 `i `uc ]
+"42
+[; ;ADC_funcs.c: 42:   while(ADCON0bits.GOnDONE == 1);
+[e $U 918  ]
+[e :U 919 ]
+[e :U 918 ]
+[e $ == -> . . _ADCON0bits 0 1 `i -> 1 `i 919  ]
+[e :U 920 ]
+"43
+[; ;ADC_funcs.c: 43:   return ( (ADRESH<<8) + ADRESL);
+[e ) -> + << -> _ADRESH `i -> 8 `i -> _ADRESL `i `ui ]
+[e $UE 917  ]
+"44
+[; ;ADC_funcs.c: 44: }
+[e :UE 917 ]
 }
-[e :U 913 ]
-[e $U 914  ]
-[e :U 915 ]
-"83
-[; ;main.c: 83:     return;
-[e $UE 912  ]
-"84
-[; ;main.c: 84: }
-[e :UE 912 ]
-}
-[p f _printf 8396800 ]
-[a 1C 67 49 0 ]
-[a 2C 37 102 32 10 13 32 0 ]

@@ -1,3 +1,4 @@
 build/default/production/main.p1:  \
 main.c  \
-basicFuncs.h 
+UART_funcs.h  \
+ADC_funcs.h 

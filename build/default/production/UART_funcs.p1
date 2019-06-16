@@ -37,6 +37,23 @@ Version 4.0 HI-TECH Software Intermediate Code
 "22712
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 22712: extern volatile __bit RC1IE __attribute__((address(0x38CD)));
 [v _RC1IE `Vb ~T0 @X0 0 e@14541 ]
+"1653
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1653: extern volatile unsigned char TXSTA __attribute__((address(0x11E)));
+[v _TXSTA `Vuc ~T0 @X0 0 e@286 ]
+"1588
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1588:     struct {
+[s S96 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S96 . RX9D OERR FERR ADDEN CREN SREN RX9 SPEN ]
+"1587
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1587: typedef union {
+[u S95 `S96 1 ]
+[n S95 . . ]
+"1599
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1599: extern volatile RCSTAbits_t RCSTAbits __attribute__((address(0x11D)));
+[v _RCSTAbits `VS95 ~T0 @X0 0 e@285 ]
+"1288
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1288: extern volatile unsigned char TXREG __attribute__((address(0x11A)));
+[v _TXREG `Vuc ~T0 @X0 0 e@282 ]
 "1659
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1659:     struct {
 [s S98 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -48,33 +65,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1670
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1670: extern volatile TX1STAbits_t TX1STAbits __attribute__((address(0x11E)));
 [v _TX1STAbits `VS97 ~T0 @X0 0 e@286 ]
-"1279
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1279: extern volatile unsigned char TX1REG __attribute__((address(0x11A)));
-[v _TX1REG `Vuc ~T0 @X0 0 e@282 ]
 "22715
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 22715: extern volatile __bit RC1IF __attribute__((address(0x387D)));
 [v _RC1IF `Vb ~T0 @X0 0 e@14461 ]
 "1225
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1225: extern volatile unsigned char RC1REG __attribute__((address(0x119)));
 [v _RC1REG `Vuc ~T0 @X0 0 e@281 ]
-"681
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 681: extern volatile unsigned char TRISC __attribute__((address(0x014)));
-[v _TRISC `Vuc ~T0 @X0 0 e@20 ]
-"1107
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1107: extern volatile unsigned char ADCON1 __attribute__((address(0x09E)));
-[v _ADCON1 `Vuc ~T0 @X0 0 e@158 ]
-"1036
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1036: extern volatile unsigned char ADCON0 __attribute__((address(0x09D)));
-[v _ADCON0 `Vuc ~T0 @X0 0 e@157 ]
-"56 basicFuncs.c
-[; ;basicFuncs.c: 56:     unsigned char* currChar = __getBits(ADCON0);
-[v ___getBits `(i ~T0 @X0 0 e? ]
-"966 /opt/microchip/xc8/v2.05/pic/include/pic16f15345.h
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 966: extern volatile unsigned char ADRESH __attribute__((address(0x09C)));
-[v _ADRESH `Vuc ~T0 @X0 0 e@156 ]
-"896
-[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 896: extern volatile unsigned char ADRESL __attribute__((address(0x09B)));
-[v _ADRESL `Vuc ~T0 @X0 0 e@155 ]
 "110 /opt/microchip/xc8/v2.05/pic/include/pic16f15345.h
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 110: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1047,177 +1043,110 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19455
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 19455: __asm("TOSH equ 01FEFh");
 [; <" TOSH equ 01FEFh ;# ">
-"7 ./basicFuncs.h
-[; ;./basicFuncs.h: 7: char ADC_goDONE = (0 << 1);
-[v _ADC_goDONE `uc ~T0 @X0 1 e ]
-[i _ADC_goDONE
--> << -> 0 `i -> 1 `i `uc
-]
-"4 basicFuncs.c
-[; ;basicFuncs.c: 4: void init_UART(long baud_rate){
+"5 UART_funcs.c
+[; ;UART_funcs.c: 5: void init_UART(long baud_rate){
 [v _init_UART `(v ~T0 @X0 1 ef1`l ]
 {
 [e :U _init_UART ]
 [v _baud_rate `l ~T0 @X0 1 r1 ]
 [f ]
-"5
-[; ;basicFuncs.c: 5:     long clock = 32000000;
+"6
+[; ;UART_funcs.c: 6:     long clock = 32000000;
 [v _clock `l ~T0 @X0 1 a ]
 [e = _clock -> 32000000 `l ]
-"6
-[; ;basicFuncs.c: 6:     ANSELC = 0x00;
-[e = _ANSELC -> -> 0 `i `uc ]
 "7
-[; ;basicFuncs.c: 7:     RX1DTPPS = 0x14;
-[e = _RX1DTPPS -> -> 20 `i `uc ]
+[; ;UART_funcs.c: 7:     ANSELC = 0x00;
+[e = _ANSELC -> -> 0 `i `uc ]
 "8
-[; ;basicFuncs.c: 8:     RC5PPS = 0x0F;
+[; ;UART_funcs.c: 8:     RX1DTPPS = 0x14;
+[e = _RX1DTPPS -> -> 20 `i `uc ]
+"9
+[; ;UART_funcs.c: 9:     RC5PPS = 0x0F;
 [e = _RC5PPS -> -> 15 `i `uc ]
-"10
-[; ;basicFuncs.c: 10:     unsigned int spbrgVal = (clock - baud_rate * 16) / (baud_rate * 16);
+"11
+[; ;UART_funcs.c: 11:     unsigned int spbrgVal = (clock - baud_rate * 16) / (baud_rate * 16);
 [v _spbrgVal `ui ~T0 @X0 1 a ]
 [e = _spbrgVal -> / - _clock * _baud_rate -> -> 16 `i `l * _baud_rate -> -> 16 `i `l `ui ]
-"12
-[; ;basicFuncs.c: 12:     SPBRG = spbrgVal;
+"13
+[; ;UART_funcs.c: 13:     SPBRG = spbrgVal;
 [e = _SPBRG -> _spbrgVal `uc ]
-"14
-[; ;basicFuncs.c: 14:     PEIE =1;
-[e = _PEIE -> -> 1 `i `b ]
 "15
-[; ;basicFuncs.c: 15:     INTCONbits.GIE =1;
+[; ;UART_funcs.c: 15:     PEIE =1;
+[e = _PEIE -> -> 1 `i `b ]
+"16
+[; ;UART_funcs.c: 16:     INTCONbits.GIE =1;
 [e = . . _INTCONbits 0 3 -> -> 1 `i `uc ]
-"17
-[; ;basicFuncs.c: 17:     TX1STA = 0b10100110;
-[e = _TX1STA -> -> 166 `i `uc ]
 "18
-[; ;basicFuncs.c: 18:     RC1STA = 0b10010000;
-[e = _RC1STA -> -> 144 `i `uc ]
+[; ;UART_funcs.c: 18:     TX1STA = 0b10100110;
+[e = _TX1STA -> -> 166 `i `uc ]
 "19
-[; ;basicFuncs.c: 19:     BAUD1CON = 0b00000000;
+[; ;UART_funcs.c: 19:     RC1STA = 0b10010000;
+[e = _RC1STA -> -> 144 `i `uc ]
+"20
+[; ;UART_funcs.c: 20:     BAUD1CON = 0b00000000;
 [e = _BAUD1CON -> -> 0 `i `uc ]
-"21
-[; ;basicFuncs.c: 21:     RC1IE = 1;
-[e = _RC1IE -> -> 1 `i `b ]
 "22
-[; ;basicFuncs.c: 22: }
-[e :UE 909 ]
-}
+[; ;UART_funcs.c: 22:     RC1IE = 1;
+[e = _RC1IE -> -> 1 `i `b ]
 "23
-[; ;basicFuncs.c: 23: void printSerial(char * text_to_send, int string_size){
-[v _printSerial `(v ~T0 @X0 1 ef2`*uc`i ]
-{
-[e :U _printSerial ]
-[v _text_to_send `*uc ~T0 @X0 1 r1 ]
-[v _string_size `i ~T0 @X0 1 r2 ]
-[f ]
-"24
-[; ;basicFuncs.c: 24:     int charCounter = 0;
-[v _charCounter `i ~T0 @X0 1 a ]
-[e = _charCounter -> 0 `i ]
-"25
-[; ;basicFuncs.c: 25:     int j = 0;
-[v _j `i ~T0 @X0 1 a ]
-[e = _j -> 0 `i ]
+[; ;UART_funcs.c: 23: }
+[e :UE 911 ]
+}
 "27
-[; ;basicFuncs.c: 27:     for(int i = 0; i < string_size; i++){
-{
-[v _i `i ~T0 @X0 1 a ]
-[e = _i -> 0 `i ]
-[e $U 914  ]
-[e :U 911 ]
-{
+[; ;UART_funcs.c: 27: void putch(unsigned char byte)
+[v _putch `(v ~T0 @X0 1 ef1`uc ]
 "28
-[; ;basicFuncs.c: 28:         while(TX1STAbits.TRMT == 0);
-[e $U 915  ]
-[e :U 916 ]
-[e :U 915 ]
-[e $ == -> . . _TX1STAbits 0 1 `i -> 0 `i 916  ]
-[e :U 917 ]
+[; ;UART_funcs.c: 28: {
+{
+[e :U _putch ]
+"27
+[; ;UART_funcs.c: 27: void putch(unsigned char byte)
+[v _byte `uc ~T0 @X0 1 r1 ]
+"28
+[; ;UART_funcs.c: 28: {
+[f ]
 "29
-[; ;basicFuncs.c: 29:         TX1REG = text_to_send[i];
-[e = _TX1REG -> *U + _text_to_send * -> _i `x -> -> # *U _text_to_send `i `x `uc ]
+[; ;UART_funcs.c: 29:     TXSTA=0x26;
+[e = _TXSTA -> -> 38 `i `uc ]
 "30
-[; ;basicFuncs.c: 30:     }
-}
-[e ++ _i -> 1 `i ]
-[e :U 914 ]
-[e $ < _i _string_size 911  ]
-[e :U 912 ]
-}
+[; ;UART_funcs.c: 30:     RCSTAbits.SPEN=1;
+[e = . . _RCSTAbits 0 7 -> -> 1 `i `uc ]
 "31
-[; ;basicFuncs.c: 31: }
-[e :UE 910 ]
-}
+[; ;UART_funcs.c: 31:     TXREG=byte;
+[e = _TXREG _byte ]
+"32
+[; ;UART_funcs.c: 32:     while(TX1STAbits.TRMT == 0)continue;
+[e $U 913  ]
+[e :U 914 ]
+[e $U 913  ]
+[e :U 913 ]
+[e $ == -> . . _TX1STAbits 0 1 `i -> 0 `i 914  ]
+[e :U 915 ]
 "33
-[; ;basicFuncs.c: 33: char readSerial(void){
+[; ;UART_funcs.c: 33:     TX1STAbits.TRMT = 0;
+[e = . . _TX1STAbits 0 1 -> -> 0 `i `uc ]
+"34
+[; ;UART_funcs.c: 34: }
+[e :UE 912 ]
+}
+"47
+[; ;UART_funcs.c: 47: char readSerial(void){
 [v _readSerial `(uc ~T0 @X0 1 ef ]
 {
 [e :U _readSerial ]
 [f ]
-"34
-[; ;basicFuncs.c: 34:     while (!RC1IF);
-[e $U 919  ]
-[e :U 920 ]
+"48
+[; ;UART_funcs.c: 48:     while (!RC1IF);
+[e $U 917  ]
+[e :U 918 ]
+[e :U 917 ]
+[e $ ! _RC1IF 918  ]
 [e :U 919 ]
-[e $ ! _RC1IF 920  ]
-[e :U 921 ]
-"35
-[; ;basicFuncs.c: 35:     return RC1REG;
-[e ) -> _RC1REG `uc ]
-[e $UE 918  ]
-"36
-[; ;basicFuncs.c: 36: }
-[e :UE 918 ]
-}
-"38
-[; ;basicFuncs.c: 38: char ADC_init(void){
-[v _ADC_init `(uc ~T0 @X0 1 ef ]
-{
-[e :U _ADC_init ]
-[f ]
-"40
-[; ;basicFuncs.c: 40:     TRISC = 0b00000011;
-[e = _TRISC -> -> 3 `i `uc ]
-"43
-[; ;basicFuncs.c: 43:     ANSELC = 0b00000011;
-[e = _ANSELC -> -> 3 `i `uc ]
-"46
-[; ;basicFuncs.c: 46:     ADCON1 = 0b10100011;
-[e = _ADCON1 -> -> 163 `i `uc ]
 "49
-[; ;basicFuncs.c: 49:     ADCON0 = 0b10000001;
-[e = _ADCON0 -> -> 129 `i `uc ]
-"51
-[; ;basicFuncs.c: 51: }
-[e :UE 922 ]
-}
-"53
-[; ;basicFuncs.c: 53: int ADC_read(){
-[v _ADC_read `(i ~T0 @X0 1 ef ]
-{
-[e :U _ADC_read ]
-[f ]
-"54
-[; ;basicFuncs.c: 54:     ADCON0 |= ADC_goDONE;
-[e =| _ADCON0 -> _ADC_goDONE `Vuc ]
-"56
-[; ;basicFuncs.c: 56:     unsigned char* currChar = __getBits(ADCON0);
-[v _currChar `*uc ~T0 @X0 1 a ]
-[e = _currChar -> ( ___getBits -> _ADCON0 `i `*uc ]
-"57
-[; ;basicFuncs.c: 57:     while(currChar[1] == 1){}
-[e $U 924  ]
-[e :U 925 ]
-{
-}
-[e :U 924 ]
-[e $ == -> *U + _currChar * -> -> 1 `i `x -> -> # *U _currChar `i `x `i -> 1 `i 925  ]
-[e :U 926 ]
-"59
-[; ;basicFuncs.c: 59:     return ( (ADRESH<<8) + ADRESL) ;
-[e ) + << -> _ADRESH `i -> 8 `i -> _ADRESL `i ]
-[e $UE 923  ]
-"63
-[; ;basicFuncs.c: 63: }
-[e :UE 923 ]
+[; ;UART_funcs.c: 49:     return RC1REG;
+[e ) -> _RC1REG `uc ]
+[e $UE 916  ]
+"50
+[; ;UART_funcs.c: 50: }
+[e :UE 916 ]
 }
