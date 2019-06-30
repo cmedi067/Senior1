@@ -68,6 +68,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "1225
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1225: extern volatile unsigned char RC1REG __attribute__((address(0x119)));
 [v _RC1REG `Vuc ~T0 @X0 0 e@281 ]
+"1279
+[; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 1279: extern volatile unsigned char TX1REG __attribute__((address(0x11A)));
+[v _TX1REG `Vuc ~T0 @X0 0 e@282 ]
 "110 /opt/microchip/xc8/v2.05/pic/include/pic16f15345.h
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 110: __asm("INDF0 equ 00h");
 [; <" INDF0 equ 00h ;# ">
@@ -1087,7 +1090,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _RC1IE -> -> 1 `i `b ]
 "27
 [; ;UART_funcs.c: 27: }
-[e :UE 911 ]
+[e :UE 912 ]
 }
 "31
 [; ;UART_funcs.c: 31: void putch(unsigned char byte)
@@ -1113,18 +1116,18 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _TXREG _byte ]
 "36
 [; ;UART_funcs.c: 36:     while(TX1STAbits.TRMT == 0)continue;
-[e $U 913  ]
-[e :U 914 ]
-[e $U 913  ]
-[e :U 913 ]
-[e $ == -> . . _TX1STAbits 0 1 `i -> 0 `i 914  ]
+[e $U 914  ]
 [e :U 915 ]
+[e $U 914  ]
+[e :U 914 ]
+[e $ == -> . . _TX1STAbits 0 1 `i -> 0 `i 915  ]
+[e :U 916 ]
 "37
 [; ;UART_funcs.c: 37:     TX1STAbits.TRMT = 0;
 [e = . . _TX1STAbits 0 1 -> -> 0 `i `uc ]
 "38
 [; ;UART_funcs.c: 38: }
-[e :UE 912 ]
+[e :UE 913 ]
 }
 "41
 [; ;UART_funcs.c: 41: char readSerial(void){
@@ -1132,11 +1135,71 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [e :U _readSerial ]
 [f ]
-"43
-[; ;UART_funcs.c: 43:     return RC1REG;
+"42
+[; ;UART_funcs.c: 42:     return RC1REG;
 [e ) -> _RC1REG `uc ]
-[e $UE 916  ]
-"44
-[; ;UART_funcs.c: 44: }
-[e :UE 916 ]
+[e $UE 917  ]
+"43
+[; ;UART_funcs.c: 43: }
+[e :UE 917 ]
+}
+"45
+[; ;UART_funcs.c: 45: void printIntSerial(int intToSend){
+[v _printIntSerial `(v ~T0 @X0 1 ef1`i ]
+{
+[e :U _printIntSerial ]
+[v _intToSend `i ~T0 @X0 1 r1 ]
+[f ]
+"46
+[; ;UART_funcs.c: 46:     TX1REG = intToSend;
+[e = _TX1REG -> _intToSend `uc ]
+"47
+[; ;UART_funcs.c: 47: }
+[e :UE 918 ]
+}
+"49
+[; ;UART_funcs.c: 49: void printSerial(char * text_to_send, int string_size){
+[v _printSerial `(v ~T0 @X0 1 ef2`*uc`i ]
+{
+[e :U _printSerial ]
+[v _text_to_send `*uc ~T0 @X0 1 r1 ]
+[v _string_size `i ~T0 @X0 1 r2 ]
+[f ]
+"50
+[; ;UART_funcs.c: 50:     int charCounter = 0;
+[v _charCounter `i ~T0 @X0 1 a ]
+[e = _charCounter -> 0 `i ]
+"51
+[; ;UART_funcs.c: 51:     int j = 0;
+[v _j `i ~T0 @X0 1 a ]
+[e = _j -> 0 `i ]
+"53
+[; ;UART_funcs.c: 53:     for(int i = 0; i < string_size; i++){
+{
+[v _i `i ~T0 @X0 1 a ]
+[e = _i -> 0 `i ]
+[e $U 923  ]
+[e :U 920 ]
+{
+"54
+[; ;UART_funcs.c: 54:         while(TX1STAbits.TRMT == 0);
+[e $U 924  ]
+[e :U 925 ]
+[e :U 924 ]
+[e $ == -> . . _TX1STAbits 0 1 `i -> 0 `i 925  ]
+[e :U 926 ]
+"55
+[; ;UART_funcs.c: 55:         TX1REG = text_to_send[i];
+[e = _TX1REG -> *U + _text_to_send * -> _i `x -> -> # *U _text_to_send `i `x `uc ]
+"56
+[; ;UART_funcs.c: 56:     }
+}
+[e ++ _i -> 1 `i ]
+[e :U 923 ]
+[e $ < _i _string_size 920  ]
+[e :U 921 ]
+}
+"57
+[; ;UART_funcs.c: 57: }
+[e :UE 919 ]
 }

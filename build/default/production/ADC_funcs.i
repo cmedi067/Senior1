@@ -11602,6 +11602,7 @@ char *tempnam(const char *, const char *);
 
 char ADC_init(char*);
 unsigned int ADC_read();
+unsigned int ADC_read_high();
 # 3 "ADC_funcs.c" 2
 # 1 "./UART_funcs.h" 1
 
@@ -11612,8 +11613,15 @@ unsigned int ADC_read();
 
 
 
+typedef struct pinName {
+    char bank;
+    int pinNum;
+};
+
 void init_UART(long);
 char readSerial(void);
+void printSerial(char * text_to_send, int string_size);
+void printIntSerial(int intToSend);
 # 4 "ADC_funcs.c" 2
 
 char ADC_init(char* pin){
@@ -11658,8 +11666,16 @@ char ADC_init(char* pin){
     ADCON0bits.GOnDONE = 1;
 }
 
-unsigned int ADC_read(){
 
+
+
+
+unsigned int ADC_read(){
   while(ADCON0bits.GOnDONE == 1);
-  return ( (ADRESH<<8) + ADRESL);
+  return ADRESL;
+
+}
+unsigned int ADC_read_high(){
+    while(ADCON0bits.GOnDONE == 1);
+    return ADRESH;
 }

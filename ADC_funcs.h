@@ -18,6 +18,7 @@
 
 char ADC_init(char*);
 unsigned int ADC_read();
+unsigned int ADC_read_high();
 
 
 #endif	/* ADC_FUNCS_H */

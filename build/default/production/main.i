@@ -11639,23 +11639,35 @@ char *tempnam(const char *, const char *);
 
 
 
+typedef struct pinName {
+    char bank;
+    int pinNum;
+};
+
 void init_UART(long);
 char readSerial(void);
+void printSerial(char * text_to_send, int string_size);
+void printIntSerial(int intToSend);
 # 50 "main.c" 2
 # 1 "./ADC_funcs.h" 1
 # 19 "./ADC_funcs.h"
 char ADC_init(char*);
 unsigned int ADC_read();
+unsigned int ADC_read_high();
 # 51 "main.c" 2
 
 
 
 __attribute__((picinterrupt(("")))) void ISR(void) {
     if(PIR1bits.ADIF == 1){
-       unsigned int adc_out = ADC_read();
-        float decimalADC = 0.004887586 * adc_out;
+       unsigned int adc_out_high = ADC_read_high();
+       unsigned int adc_out_low = ADC_read();
 
-        printf("%f \n\r ", decimalADC);
+
+
+        printIntSerial(adc_out_high);
+       printIntSerial(adc_out_low);
+
         PIR1bits.ADIF = 0;
     }
 

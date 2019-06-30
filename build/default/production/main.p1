@@ -12,11 +12,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7986
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 7986: extern volatile PIR1bits_t PIR1bits __attribute__((address(0x70D)));
 [v _PIR1bits `VS385 ~T0 @X0 0 e@1805 ]
-"20 ./ADC_funcs.h
+"21 ./ADC_funcs.h
+[; ;./ADC_funcs.h: 21: unsigned int ADC_read_high();
+[v _ADC_read_high `(ui ~T0 @X0 0 e? ]
+"20
 [; ;./ADC_funcs.h: 20: unsigned int ADC_read();
 [v _ADC_read `(ui ~T0 @X0 0 e? ]
-"113 /opt/microchip/xc8/v2.05/pic/include/c99/stdio.h
-[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"17 ./UART_funcs.h
+[; ;./UART_funcs.h: 17: void printIntSerial(int intToSend);
+[v _printIntSerial `(v ~T0 @X0 0 ef1`i ]
 "8050 /opt/microchip/xc8/v2.05/pic/include/pic16f15345.h
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 8050:     struct {
 [s S390 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -28,8 +32,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8060
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 8060: extern volatile PIR3bits_t PIR3bits __attribute__((address(0x70F)));
 [v _PIR3bits `VS389 ~T0 @X0 0 e@1807 ]
-"10 ./UART_funcs.h
-[; ;./UART_funcs.h: 10: char readSerial(void);
+"113 /opt/microchip/xc8/v2.05/pic/include/c99/stdio.h
+[v _printf `(i ~T0 @X0 0 ev`*Cuc ]
+"15 ./UART_funcs.h
+[; ;./UART_funcs.h: 15: char readSerial(void);
 [v _readSerial `(uc ~T0 @X0 0 ef ]
 [p mainexit ]
 "681 /opt/microchip/xc8/v2.05/pic/include/pic16f15345.h
@@ -38,8 +44,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 "597
 [; ;/opt/microchip/xc8/v2.05/pic/include/pic16f15345.h: 597: extern volatile unsigned char TRISA __attribute__((address(0x012)));
 [v _TRISA `Vuc ~T0 @X0 0 e@18 ]
-"9 ./UART_funcs.h
-[; ;./UART_funcs.h: 9: void init_UART(long);
+"14 ./UART_funcs.h
+[; ;./UART_funcs.h: 14: void init_UART(long);
 [v _init_UART `(v ~T0 @X0 0 ef1`l ]
 "19 ./ADC_funcs.h
 [; ;./ADC_funcs.h: 19: char ADC_init(char*);
@@ -1077,75 +1083,77 @@ Version 4.0 HI-TECH Software Intermediate Code
 [f ]
 "55
 [; ;main.c: 55:     if(PIR1bits.ADIF == 1){
-[e $ ! == -> . . _PIR1bits 0 0 `i -> 1 `i 912  ]
+[e $ ! == -> . . _PIR1bits 0 0 `i -> 1 `i 913  ]
 {
 "56
-[; ;main.c: 56:        unsigned int adc_out = ADC_read();
-[v _adc_out `ui ~T0 @X0 1 a ]
-[e = _adc_out ( _ADC_read ..  ]
+[; ;main.c: 56:        unsigned int adc_out_high = ADC_read_high();
+[v _adc_out_high `ui ~T0 @X0 1 a ]
+[e = _adc_out_high ( _ADC_read_high ..  ]
 "57
-[; ;main.c: 57:         float decimalADC = 0.004887586 * adc_out;
-[v _decimalADC `f ~T0 @X0 1 a ]
-[e = _decimalADC -> * .0.004887586 -> _adc_out `d `f ]
-"59
-[; ;main.c: 59:         printf("%f \n\r ", decimalADC);
-[e ( _printf , (. :s 1C -> _decimalADC `d ]
-"60
-[; ;main.c: 60:         PIR1bits.ADIF = 0;
-[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
+[; ;main.c: 57:        unsigned int adc_out_low = ADC_read();
+[v _adc_out_low `ui ~T0 @X0 1 a ]
+[e = _adc_out_low ( _ADC_read ..  ]
 "61
-[; ;main.c: 61:     }
-}
-[e :U 912 ]
-"63
-[; ;main.c: 63:     if(PIR3bits.RC1IF == 1){
-[e $ ! == -> . . _PIR3bits 0 4 `i -> 1 `i 913  ]
-{
+[; ;main.c: 61:         printIntSerial(adc_out_high);
+[e ( _printIntSerial (1 -> _adc_out_high `i ]
+"62
+[; ;main.c: 62:        printIntSerial(adc_out_low);
+[e ( _printIntSerial (1 -> _adc_out_low `i ]
 "64
-[; ;main.c: 64:         printf(readSerial());
-[e ( _printf -> ( _readSerial ..  `*Cuc ]
+[; ;main.c: 64:         PIR1bits.ADIF = 0;
+[e = . . _PIR1bits 0 0 -> -> 0 `i `uc ]
 "65
 [; ;main.c: 65:     }
 }
 [e :U 913 ]
-"66
-[; ;main.c: 66: }
-[e :UE 911 ]
+"67
+[; ;main.c: 67:     if(PIR3bits.RC1IF == 1){
+[e $ ! == -> . . _PIR3bits 0 4 `i -> 1 `i 914  ]
+{
+"68
+[; ;main.c: 68:         printf(readSerial());
+[e ( _printf -> ( _readSerial ..  `*Cuc ]
+"69
+[; ;main.c: 69:     }
+}
+[e :U 914 ]
+"70
+[; ;main.c: 70: }
+[e :UE 912 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"68
-[; ;main.c: 68: void main(void) {
+"72
+[; ;main.c: 72: void main(void) {
 [v _main `(v ~T0 @X0 1 ef ]
 {
 [e :U _main ]
 [f ]
-"70
-[; ;main.c: 70:     TRISC = 0b00010000;
+"74
+[; ;main.c: 74:     TRISC = 0b00010000;
 [e = _TRISC -> -> 16 `i `uc ]
-"71
-[; ;main.c: 71:     TRISA = 0x00;
-[e = _TRISA -> -> 0 `i `uc ]
-"73
-[; ;main.c: 73:     init_UART(115200);
-[e ( _init_UART (1 -> 115200 `l ]
 "75
-[; ;main.c: 75:     ADC_init("C1");
-[e ( _ADC_init (1 :s 2C ]
+[; ;main.c: 75:     TRISA = 0x00;
+[e = _TRISA -> -> 0 `i `uc ]
 "77
-[; ;main.c: 77:     while(1){ }
-[e :U 916 ]
+[; ;main.c: 77:     init_UART(115200);
+[e ( _init_UART (1 -> 115200 `l ]
+"79
+[; ;main.c: 79:     ADC_init("C1");
+[e ( _ADC_init (1 :s 1C ]
+"81
+[; ;main.c: 81:     while(1){ }
+[e :U 917 ]
 {
 }
-[e :U 915 ]
-[e $U 916  ]
-[e :U 917 ]
-"78
-[; ;main.c: 78:     return;
-[e $UE 914  ]
-"79
-[; ;main.c: 79: }
-[e :UE 914 ]
+[e :U 916 ]
+[e $U 917  ]
+[e :U 918 ]
+"82
+[; ;main.c: 82:     return;
+[e $UE 915  ]
+"83
+[; ;main.c: 83: }
+[e :UE 915 ]
 }
-[p f _printf 9445888 ]
-[a 2C 67 49 0 ]
-[a 1C 37 102 32 10 13 32 0 ]
+[p f _printf 9437696 ]
+[a 1C 67 49 0 ]

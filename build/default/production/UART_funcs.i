@@ -11599,8 +11599,15 @@ char *tempnam(const char *, const char *);
 # 7 "./UART_funcs.h" 2
 
 
+typedef struct pinName {
+    char bank;
+    int pinNum;
+};
+
 void init_UART(long);
 char readSerial(void);
+void printSerial(char * text_to_send, int string_size);
+void printIntSerial(int intToSend);
 # 3 "UART_funcs.c" 2
 
 
@@ -11641,6 +11648,19 @@ void putch(unsigned char byte)
 
 
 char readSerial(void){
-
     return RC1REG;
+}
+
+void printIntSerial(int intToSend){
+    TX1REG = intToSend;
+}
+
+void printSerial(char * text_to_send, int string_size){
+    int charCounter = 0;
+    int j = 0;
+
+    for(int i = 0; i < string_size; i++){
+        while(TX1STAbits.TRMT == 0);
+        TX1REG = text_to_send[i];
+    }
 }

@@ -38,9 +38,22 @@ void putch(unsigned char byte)
 }
 
 
-char readSerial(void){
-   
+char readSerial(void){   
     return RC1REG;    
+}
+
+void printIntSerial(int intToSend){
+    TX1REG = intToSend;  
+}
+
+void printSerial(char * text_to_send, int string_size){
+    int charCounter = 0;
+    int j = 0;
+
+    for(int i = 0; i < string_size; i++){   
+        while(TX1STAbits.TRMT == 0);
+        TX1REG = text_to_send[i];       
+    }
 }
 
 

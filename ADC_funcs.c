@@ -44,8 +44,16 @@ char ADC_init(char* pin){
     ADCON0bits.GOnDONE = 1;    
 }
 
-unsigned int ADC_read(){  
- // ADCON0bits.GOnDONE = 1;
+/*unsigned int ADC_read(){
   while(ADCON0bits.GOnDONE == 1);   
   return ( (ADRESH<<8) + ADRESL);    
+}*/
+unsigned int ADC_read(){
+  while(ADCON0bits.GOnDONE == 1);   
+  return  ADRESL;
+    
+}
+unsigned int ADC_read_high(){
+    while(ADCON0bits.GOnDONE == 1); 
+    return ADRESH;
 }

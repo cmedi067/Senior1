@@ -53,10 +53,14 @@
 
 __interrupt() void ISR(void) {    
     if(PIR1bits.ADIF == 1){
-       unsigned int adc_out = ADC_read();
-        float decimalADC = 0.004887586 * adc_out;
+       unsigned int adc_out_high = ADC_read_high();
+       unsigned int adc_out_low = ADC_read();
+       // float decimalADC = 0.004887586 * adc_out;
         
-        printf("%f \n\r ", decimalADC);
+        //printf("%d", adc_out);
+        printIntSerial(adc_out_high);
+       printIntSerial(adc_out_low);     
+       
         PIR1bits.ADIF = 0;
     }
     
